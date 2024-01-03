@@ -15,3 +15,33 @@ _________________________
 
 _________________________
 # How the code works
+
+Level - Node 2D
+Is the main scene, which holds all the used child scenes.
+
+Camera 2D
+Is a camera node used to display video in the viewport
+
+Walls - Node 2D
+Parent of all the Static Body nodes 2D used in keep the ball within the viewport.
+
+ColorRect
+Background of the main game scene.
+
+Racket - Node 2D
+holds all the childern of the player's racket. It holds the main Static Body moved by controls,
+and a area 3D used for making the ball move randomly, after it lefts the area of the racket this makes the game more fun and replayable. 
+
+Racket-Enemy2 - Static Body 2D Node
+holds all the enemy's code and the same kind of area 2D node that does a simliar function, when the ball exits the area, to add force in a random direction after a hit, this makes the game more fun, and realistic.
+
+Goal-enemy - Area 2D 
+sends a signal to the Game-handler - Node 2D, that adds score for the enemy.
+
+Goal-player - Area 2D 
+sends a signal to the Game-handler - Node 2D, that adds score for the player. Score counts up to 11, and then the game ends, and the scene is restarted, this is done in the Game-handler - Node 2D.
+
+Blue Score - Label 2D
+
+
+Red score  Label 2D 
