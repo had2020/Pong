@@ -41,6 +41,9 @@ sends a signal to the Game-handler - Node 2D, that adds score for the enemy.
 Goal-player - Area 2D 
 sends a signal to the Game-handler - Node 2D, that adds score for the player. Score counts up to 11, and then the game ends, and the scene is restarted, this is done in the Game-handler - Node 2D.
 
+Game-handler - Node 2D 
+Node 2D, that holds the important data in the game. Counts score up to 11, Using Area 2Ds positions as Goals, starting with Goal in there name. It also resets the game scene if the score pasts 11 points the game resets.
+
 Blue Score - Label 2D
 ui used for displaying the counted score.
 
