@@ -1,0 +1,189 @@
+[gd_scene load_steps=15 format=3 uid="uid://wtkwsg8xrse6"]
+
+[ext_resource type="Script" path="res://racket body.gd" id="1_ps8u5"]
+[ext_resource type="Script" path="res://Ball.gd" id="2_6cgff"]
+[ext_resource type="Script" path="res://racket-enemy body.gd" id="2_ea53m"]
+[ext_resource type="Texture2D" uid="uid://cqfreyodqbtfd" path="res://pixil-frame-0.png" id="2_pn4hb"]
+[ext_resource type="Script" path="res://Game-handler.gd" id="5_bjfd6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yv8g2"]
+size = Vector2(30, 671)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pyhc8"]
+size = Vector2(1213, 36)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_70iss"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7icd"]
+size = Vector2(20, 123)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qyrgr"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c6sae"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0ukm"]
+size = Vector2(20, 659)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4ofvi"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b2kgo"]
+radius = 13.0
+
+[node name="Level" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(598, 325)
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+position = Vector2(5, 325.5)
+shape = SubResource("RectangleShape2D_yv8g2")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
+position = Vector2(1184, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D2"]
+position = Vector2(5, 325.5)
+shape = SubResource("RectangleShape2D_yv8g2")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
+position = Vector2(595, -21)
+shape = SubResource("RectangleShape2D_pyhc8")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 690)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D4"]
+position = Vector2(595, -21)
+shape = SubResource("RectangleShape2D_pyhc8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_left = 22.0
+offset_top = 9.0
+offset_right = 62.0
+offset_bottom = 49.0
+scale = Vector2(28.88, 16.4)
+color = Color(0, 0, 0, 1)
+
+[node name="Racket" type="Node2D" parent="." groups=["player"]]
+position = Vector2(156, 64)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Racket" groups=["player"]]
+physics_material_override = SubResource("PhysicsMaterial_70iss")
+script = ExtResource("1_ps8u5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Racket/StaticBody2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_a7icd")
+
+[node name="Sprite2D" type="Sprite2D" parent="Racket/StaticBody2D"]
+modulate = Color(0, 1, 1, 1)
+rotation = 3.14159
+scale = Vector2(0.0400014, 0.240002)
+texture = SubResource("NoiseTexture2D_qyrgr")
+
+[node name="Button" type="Button" parent="Racket/StaticBody2D"]
+offset_left = -9.0
+offset_top = -60.0
+offset_right = 9.0
+offset_bottom = 59.0
+
+[node name="Racket-Enemy2" type="StaticBody2D" parent="." groups=["enemy"]]
+position = Vector2(1038, 64)
+physics_material_override = SubResource("PhysicsMaterial_c6sae")
+script = ExtResource("2_ea53m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Racket-Enemy2"]
+position = Vector2(0.240356, -0.0594788)
+shape = SubResource("RectangleShape2D_a7icd")
+
+[node name="Sprite2D" type="Sprite2D" parent="Racket-Enemy2"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0.240356, 0.44051)
+rotation = 3.14159
+scale = Vector2(0.0400014, 0.240002)
+texture = SubResource("NoiseTexture2D_qyrgr")
+
+[node name="Timer" type="Timer" parent="Racket-Enemy2"]
+autostart = true
+
+[node name="Goal-enemy" type="Area2D" parent="."]
+position = Vector2(52, 39)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal-enemy"]
+position = Vector2(-22, 286.5)
+shape = SubResource("RectangleShape2D_k0ukm")
+
+[node name="Goal-player" type="Area2D" parent="."]
+position = Vector2(1185, 38)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal-player"]
+position = Vector2(-22, 286.5)
+shape = SubResource("RectangleShape2D_k0ukm")
+
+[node name="Ball" type="RigidBody2D" parent="."]
+position = Vector2(178, 190)
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_4ofvi")
+gravity_scale = 1.66533e-16
+can_sleep = false
+constant_force = Vector2(2.08165e-12, 2.08165e-12)
+script = ExtResource("2_6cgff")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_b2kgo")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+texture_filter = 1
+texture = ExtResource("2_pn4hb")
+
+[node name="Area2D" type="Area2D" parent="Ball"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball/Area2D"]
+shape = SubResource("CircleShape2D_b2kgo")
+
+[node name="Game-handler" type="Node2D" parent="."]
+script = ExtResource("5_bjfd6")
+
+[node name="Timer" type="Timer" parent="Game-handler"]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="Blue Score" type="Label" parent="."]
+self_modulate = Color(0, 0, 1, 1)
+offset_left = 43.0
+offset_top = 2.0
+offset_right = 71.0
+offset_bottom = 25.0
+scale = Vector2(4.09012, 4.08)
+text = "00"
+
+[node name="Red Score" type="Label" parent="."]
+self_modulate = Color(1, 0, 0, 1)
+offset_left = 1061.0
+offset_top = 4.0
+offset_right = 1089.0
+offset_bottom = 27.0
+scale = Vector2(4.09012, 4.08)
+text = "00"
+
+[connection signal="timeout" from="Racket-Enemy2/Timer" to="Racket-Enemy2" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Goal-enemy" to="Game-handler" method="_on_goalenemy_body_entered"]
+[connection signal="body_entered" from="Goal-player" to="Game-handler" method="_on_goalplayer_body_entered"]
+[connection signal="area_shape_exited" from="Ball/Area2D" to="Ball" method="_on_area_2d_area_shape_exited"]
+[connection signal="body_exited" from="Ball/Area2D" to="Ball" method="_on_area_2d_body_exited"]
+[connection signal="body_shape_exited" from="Ball/Area2D" to="Ball" method="_on_area_2d_body_shape_exited"]
+[connection signal="timeout" from="Game-handler/Timer" to="Game-handler" method="_on_timer_timeout"]
