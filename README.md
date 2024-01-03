@@ -12,6 +12,6 @@ How the game works, same rules of pong, but the game goes to 11 points, and ther
 # Main Scene Node Tree
 _________________________
 <img width="265" alt="Screenshot 2024-01-03 at 1 04 37 PM" src="https://github.com/had2020/Pong/assets/59424667/d595dcb5-1117-49e6-9e9b-3bdac2e66997">
-__________________________________________________
 
+_________________________
 # How the code works
